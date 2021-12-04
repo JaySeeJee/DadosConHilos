@@ -1,0 +1,23 @@
+package IntentoDados;
+
+import java.util.ArrayList;
+
+public class LanzadorDados {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Marcador marcador = new Marcador();
+		ArrayList<Dado> lista = new ArrayList<>();
+		int pareja = 0;
+		
+		for(int i = 0; i < 2; i++) {
+			Dado dado = new Dado(marcador, i);
+			dado.start();
+			lista.add(dado);
+			}
+	
+System.out.println("fin");
+	}
+
+}
