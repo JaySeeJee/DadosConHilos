@@ -1,0 +1,74 @@
+package IntentoDados;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Dado extends Thread {
+
+	public Marcador marcador;
+	public int numeroJugador;
+	public int pareja = 0;
+	ArrayList<Integer> resultado = new ArrayList<>();
+
+	public Dado(Marcador marcador, int numeroJugador) {
+		super();
+		this.marcador = marcador;
+		this.numeroJugador = numeroJugador;
+
+	}
+
+	public void run() {
+
+		marcador.Tiras(numeroJugador);
+
+		Random rn = new Random();
+		int aux;
+
+		for (int i = 0; i < 3; i++) {
+			aux = rn.nextInt(6 - 1 + 1) + 1;
+			resultado.add(aux);
+			System.out.println("El jugador " + numeroJugador + " ha realizado estas tiradas " + (i + 1));
+		}
+		
+		System.out.println("El jugador número " + numeroJugador + " ha tenido estos resultados: " + resultado.toString());
+		
+		
+		int aux1 = 0;
+		
+		if(resultado.get(0) == resultado.get(1)) {
+			pareja++;
+			aux1 = resultado.get(0);
+		}
+			
+		if(resultado.get(0) == resultado.get(2)) {
+			pareja++;
+			aux1=resultado.get(0);
+		}
+			
+		if(resultado.get(1) == resultado.get(2)) {
+			pareja++;
+			aux1=resultado.get(1);
+		}
+			
+		
+		
+		if(pareja == 0)
+			System.out.println("El jugador numero " + numeroJugador + " no obtenido ninguna pareja");
+		else if (pareja == 1)
+			System.out.println("El jugador numero " + numeroJugador + " ha obtenido una pareja de " + aux1);
+		else if (pareja == 3)
+			System.out.println("El jugador numero " + numeroJugador + " ha obtenido un trio de " + aux1);
+		
+
+			
+			
+			marcador.noTiras(numeroJugador);
+		System.out.println("Que está pasando?");
+
+	}
+	
+	
+	public int getPareja() {
+		return pareja;
+	}
+}
