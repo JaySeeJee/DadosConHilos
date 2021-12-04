@@ -1,0 +1,47 @@
+package IntentoDados;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Marcador {
+
+	boolean tirando = false;
+
+	public synchronized void noTiras(int numeroJugador) {
+
+		
+		System.out.println("Entro a no Tiras");
+		if (tirando = true) {
+			try {
+
+				wait();
+				System.out.println("El jugador " + (numeroJugador + 1) + " está esperando");
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("Salgo del if");
+		} // Controlamos que cuando un jugador tira, los demás esperen.
+
+		System.out.println("fin notiras");
+		tirando = false;
+		notifyAll();	
+	}
+
+	public synchronized void Tiras(int numeroJugador) {
+
+		if (tirando == false) {
+
+			System.out.println("Tira el jugador " + numeroJugador);
+		}
+		System.out.println("fin tiras");
+		
+		tirando = true;
+		notifyAll();
+		
+		
+	}
+
+}
